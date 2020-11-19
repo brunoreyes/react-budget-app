@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 // using props to pass expenseTransaction and place it in {} to destructure it
 const ExpenseTransaction = ({ expenseTransaction }) => {
+  const { deleteTransaction } = useContext(GlobalContext);
+
   return (
     <div>
       <li className="transaction">
@@ -11,7 +14,10 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
         <span className="transaction-amount">
           ${expenseTransaction.expenseAmount}
         </span>
-        <button className="delete-btn">
+        <button
+          className="delete-btn"
+          onClick={() => deleteTransaction(expenseTransaction.id)}
+        >
           <i className="fas fa-trash"></i>
         </button>
       </li>

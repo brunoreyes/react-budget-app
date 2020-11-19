@@ -9,6 +9,8 @@ import ExpenseList from './components/ExpenseList';
 import { GlobalContextProvider } from './context/GlobalState';
 
 //  type shortcut: "rafce" to create a functional component
+// shorthand npm install: npm i pkgName
+// imported uuid for autogenerating unique id's for newly created objects
 
 const App = () => {
   return (

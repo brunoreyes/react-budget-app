@@ -15,7 +15,7 @@ const IncomeList = () => {
         {incomeTransactions.map((incomeTransaction) => (
           // passing income transaction data
           <IncomeTransaction
-            key={incomeTransactions.id}
+            key={incomeTransaction.id}
             incomeTransaction={incomeTransaction}
           />
         ))}
