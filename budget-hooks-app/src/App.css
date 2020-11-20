@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Muli:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Muli:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,400&family=Oswald:wght@200;300;400&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +13,9 @@ html {
 .container {
   width: 100%;
   height: 100vh;
-  background-color: #77c987;
+  /* background-color: #77c987; */
+  background-color: #71a9f7;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,8 +26,9 @@ html {
   max-width: 150rem;
   height: 80vh;
   background-color: #2c2c2d;
-  color: #eee;
-  border-radius: 0.5rem;
+  /* background-color: #eff6ee; */
+  color: #fcdc4d;
+  border-radius: 1rem;
   box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.7);
   display: grid;
   grid-template-columns: minmax(38%, 40rem) repeat(2, minmax(29%, 29rem));
@@ -46,7 +50,8 @@ html {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  color: #f46036;
+  /* color: #f46036; */
+  color: #fcdc4d;
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
@@ -61,14 +66,17 @@ html {
 }
 
 .balance h2 {
-  font-family: 'Baloo Da 2', serif;
+  /* font-family: 'Baloo Da 2', serif; */
+  margin-top: -7rem;
+  font-family: 'Roboto', serif;
   font-size: 4.5rem;
   font-weight: 300;
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .balance h3 {
-  font-family: 'Baloo Da 2', serif;
+  /* font-family: 'Baloo Da 2', serif; */
+  font-family: 'Roboto', serif;
   font-size: 4rem;
   font-weight: 300;
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
@@ -78,7 +86,8 @@ html {
   display: flex;
   justify-content: space-evenly;
   margin-top: 10rem;
-  font-family: 'Muli', serif;
+  /* font-family: 'Muli', serif; */
+  font-family: 'Roboto', serif;
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
   text-align: right;
 }
@@ -98,14 +107,14 @@ html {
 
 .income-expense h3 {
   font-size: 3.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .income-expense p {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.8rem;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -137,9 +146,16 @@ html {
   margin-bottom: 2.5rem;
   border: none;
   background: transparent;
-  border-bottom: 0.2rem solid #777;
+  /* border-bottom: 0.2rem solid #777; */
+  border-bottom: 0.2rem solid #77c987;
+
   padding: 0.5rem 0.5rem 0.5rem 0;
-  font-family: 'Baloo Da 2', serif;
+  /* font-family: 'Baloo Da 2', serif; */
+  font-family: 'Lato', sans-serif;
+  /* font-family: 'Oswald', sans-serif; */
+
+  /* font-family: 'Roboto', serif; */
+
   font-size: 1.8rem;
   color: #eee;
   outline: none;
@@ -149,22 +165,29 @@ html {
 .income input:not([type='submit']):focus {
   border-bottom: 0.2rem solid #77c987;
 }
-
-.expense input:not([type='submit']):focus {
+.income input:not([type='submit']) {
+  border-bottom: 0.2rem solid #77c987;
+}
+.expense input:not([type='submit']) {
   border-bottom: 0.2rem solid #ff716e;
 }
 
+/* .expense input:not([type='submit']):focus {
+  border-bottom: 0.2rem solid #ff716e;
+} */
+
 .input-group input[type='submit'] {
-  width: 10rem;
-  padding: 0.7rem;
+  width: 11rem;
+  padding: 0.9rem;
   border: none;
   outline: none;
-  border-radius: 0.7rem;
-  font-family: 'Muli', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
+  border-radius: 1rem;
+  /* font-family: 'Muli', serif; */
+  font-family: 'Lato', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #eee;
+  color: #fff;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   cursor: pointer;
   margin-top: 1rem;
@@ -176,11 +199,17 @@ html {
 }
 
 .income input[type='submit'] {
+  /* background-color: #77c987; */
+  background-color: #5a9b67;
+}
+
+#income-input-submit-btn {
   background-color: #77c987;
 }
 
 .expense input[type='submit'] {
-  background-color: #ff716e;
+  /* background-color: #ff716e; */
+  background-color: #cf5856;
 }
 
 input[type='number']::-webkit-inner-spin-button {
@@ -192,19 +221,24 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .transactions h2 {
-  font-family: 'Baloo da 2', serif;
+  /* font-family: 'Baloo da 2', serif; */
+  font-family: 'Lato', sans-serif;
   font-size: 2.5rem;
+  text-transform: capitalize;
   letter-spacing: 0.1rem;
   font-weight: 300;
   margin-bottom: 2rem;
+  color: #fff;
 }
 
 .transactions-income {
+  text-transform: capitalize;
   grid-column: 2 / 3;
   grid-row: 5 / -1;
 }
 
 .transactions-expense {
+  text-transform: capitalize;
   grid-column: 3 / -1;
   grid-row: 5 / -1;
 }
@@ -224,24 +258,25 @@ input[type='number']::-webkit-inner-spin-button {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #aaa;
+  background-color: #666;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #333;
   border-radius: 10px;
 }
 
 .transaction {
   list-style: none;
-  font-family: 'Baloo da 2', serif;
+  /* font-family: 'Baloo da 2', serif; */
+  font-family: 'Lato', sans-serif;
   font-size: 1.8rem;
   letter-spacing: 0.1rem;
   margin-bottom: 1.5rem;
   color: #fff;
   padding: 0.4rem 0.4rem 0.4rem 0.7rem;
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
   width: 32rem;
   display: flex;
   justify-content: space-between;
@@ -257,15 +292,15 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .transaction-text {
-  width: 23rem;
+  width: 25rem;
 }
 
 .transaction-amount {
-  transform: translateX(3rem);
+  transform: translateX(3.5rem);
 }
 
 .delete-btn {
-  transform: translateX(4rem);
+  transform: translateX(8.5rem);
   border: none;
   background-color: transparent;
   font-size: 2rem;
@@ -275,7 +310,22 @@ input[type='number']::-webkit-inner-spin-button {
   cursor: pointer;
   outline: none;
 }
+.btn-edit {
+  transform: translateX(8.5rem);
+  padding: 0 -20rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.btn-edit i {
+  font-size: 16px;
+  /* color: #bbb; */
+  color: #fcdc4d;
 
+  /* background-color: transparent; */
+  margin-right: 20px;
+}
 @media (max-width: 1500px) {
   html {
     font-size: 58%;

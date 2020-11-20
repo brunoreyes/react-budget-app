@@ -12,16 +12,27 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
           {expenseTransaction.expenseName}
         </span>
         <span className="transaction-amount">
-          ${expenseTransaction.expenseAmount}
+          $
+          {expenseTransaction.expenseAmount.toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })}
         </span>
         <button
           className="delete-btn"
           onClick={() => deleteTransaction(expenseTransaction.id)}
         >
-          <i className="fas fa-trash"></i>
-        </button>
+          <i className="fas fa-trash"></i>{' '}
+        </button>{' '}
+        <div>
+          {' '}
+          <button
+            className="btn-edit"
+            // onClick={() => findItem(task.id)}
+          >
+            <i className="fas fa-pen"></i>
+          </button>
+        </div>
       </li>
-      ;
     </div>
   );
 };

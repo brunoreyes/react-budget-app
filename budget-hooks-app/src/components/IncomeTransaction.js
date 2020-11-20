@@ -9,7 +9,10 @@ const IncomeTransaction = ({ incomeTransaction }) => {
       <li className="transaction">
         <span className="transaction-text">{incomeTransaction.incomeName}</span>
         <span className="transaction-amount">
-          ${incomeTransaction.incomeAmount}
+          $
+          {incomeTransaction.incomeAmount.toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })}
         </span>
         {/* added an onClick attribute to the delete btn */}
         <button
@@ -17,9 +20,14 @@ const IncomeTransaction = ({ incomeTransaction }) => {
           onClick={() => deleteTransaction(incomeTransaction.id)}
         >
           <i className="fas fa-trash"></i>
+        </button>{' '}
+        <button
+          className="btn-edit"
+          // onClick={() => findItem(task.id)}
+        >
+          <i className="fas fa-pen"></i>
         </button>
       </li>
-      ;
     </div>
   );
 };

@@ -10,7 +10,7 @@ const ExpenseList = () => {
   //   console.log(expenseTransactions);
   return (
     <div className="transactions transactions-expense">
-      <h2>Transaction History</h2>
+      <h2>Expenses</h2>
       <ul className="transaction-list">
         {expenseTransactions.map((expenseTransaction) => (
           // passing expense transaction data
