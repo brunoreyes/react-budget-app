@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header';
 import Balance from './components/Balance';
-import AddTransaction from './components/AddTransaction';
+import TransactionForm from './components/TransactionForm';
 import IncomeList from './components/IncomeList';
 import ExpenseList from './components/ExpenseList';
 // import GlobalContextProvider, the useReducer hook, and wrap everything within the application.
@@ -19,7 +19,7 @@ const App = () => {
         <div className="app-wrapper">
           <Header />
           <Balance />
-          <AddTransaction />
+          <TransactionForm />
           <IncomeList />
           <ExpenseList />
         </div>

@@ -1,25 +1,27 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect, useState } from 'react';
 import AppReducer from './AppReducer.js';
 
 // using the localstorge of the website
+// const initialState = {
+//   incomeTransactions:
+//     JSON.parse(localStorage.getItem('incomeTransactions')) || [],
+//   expenseTransactions:
+//     JSON.parse(localStorage.getItem('expenseTransactions')) || [],
+// };
+
+// test data
 const initialState = {
-  incomeTransactions:
-    JSON.parse(localStorage.getItem('incomeTransactions')) || [],
-  expenseTransactions:
-    JSON.parse(localStorage.getItem('expenseTransactions')) || [],
+  incomeTransactions: [
+    { id: 1, incomeName: 'Car sold', incomeAmount: 15000 },
+    { id: 2, incomeName: 'Salary', incomeAmount: 5000 },
+    { id: 3, incomeName: 'Bonus', incomeAmount: 13000 },
+  ],
+  expenseTransactions: [
+    { id: 1, expenseName: 'Rent', expenseAmount: 1000 },
+    { id: 2, expenseName: 'Credit Card', expenseAmount: 2000 },
+    { id: 3, expenseName: 'Clothes', expenseAmount: 500 },
+  ],
 };
-
-// incomeTransactions:
-//     // { id: 1, incomeName: 'Car sold', incomeAmount: 15000 },
-//     // { id: 2, incomeName: 'Salary', incomeAmount: 5000 },
-//     // { id: 3, incomeName: 'Bonus', incomeAmount: 13000 },
-//   ],
-//   expenseTransactions: [
-//     // { id: 1, expenseName: 'Rent', expenseAmount: 1000 },
-//     // { id: 2, expenseName: 'Credit Card', expenseAmount: 2000 },
-//     // { id: 3, expenseName: 'Clothes', expenseAmount: 500 },
-//   ],
-
 export const GlobalContext = createContext(initialState);
 
 // children: all components that live within the application
@@ -27,6 +29,14 @@ export const GlobalContextProvider = ({ children }) => {
   // in the place of redux we are using useReducer, the react hook.
   // const [variable, function] = useReducer(fileThatContainsInfo, valueOfTheState);
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  // // for setting transactions
+  // const [incomeTransactions, updatingIncomeTransactions] = useState(
+  //   initialState
+  // );
+
+  // for editing an income Transaction
+  const [editIncomeTransaction, setIncomeTransaction] = useState(null);
 
   useEffect(() => {
     localStorage.setItem(
@@ -69,6 +79,55 @@ export const GlobalContextProvider = ({ children }) => {
       payload: id,
     });
   };
+
+  // Find task
+  const findIncome = (incomeTransaction) => {
+    // dispatch({
+    //   type: 'READ_INCOME',
+    //   payload: incomeTransaction,
+    // });
+    const item = incomeTransaction;
+    console.log(incomeTransaction);
+    // setItem('incomeTransactions', JSON.stringify(state.incomeTransactions));
+    setIncomeTransaction(item);
+  };
+
+  // editing a transaction by taking in a unique id and targeting it
+  const editIncome = (incomeName, incomeAmount, editIncomeTransaction) => {
+    dispatch({
+      type: 'UPDATE_INCOME',
+      payload: editIncomeTransaction,
+      incomeName,
+      incomeAmount,
+    });
+    // const newIncomeTransactions = initialState.incomeTransactions.map(
+    //   (incomeTransaction) =>
+    //     incomeTransaction.id === editIncomeTransaction.id
+    //       ? { incomeName, incomeAmount }
+    //       : incomeTransaction
+    // );
+
+    // updatingIncomeTransactions(newIncomeTransactions);
+
+    // const newIncomeTransaction = (incomeTransaction) =>
+    //   incomeTransaction.id === editIncomeTransaction.id
+    //     ? { incomeName, incomeAmount }
+    //     : incomeTransaction;
+    // console.log(newIncomeTransaction);
+    // incomeTransaction.id === editIncomeTransaction.id
+    //   ? { incomeName, incomeAmount, id }
+    //   : incomeTransaction;
+
+    // newIncomeTransactions;
+  };
+
+  // editing a transaction by taking in a unique id and targeting it
+  // const editExpense = (id) => {
+  //   dispatch({
+  //     type: 'UPDATE_EXPENSE',
+  //     payload: id,
+  //   });
+  // };
   return (
     <GlobalContext.Provider
       value={{
@@ -79,6 +138,12 @@ export const GlobalContextProvider = ({ children }) => {
         addIncome,
         addExpense,
         deleteTransaction,
+        editIncome,
+        // editExpense,
+        findIncome,
+        editIncomeTransaction,
+
+        // findExpense,
       }}
     >
       {children}

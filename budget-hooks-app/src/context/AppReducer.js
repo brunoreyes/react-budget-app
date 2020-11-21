@@ -23,6 +23,34 @@ export default (state, action) => {
           (expenseTransaction) => expenseTransaction.id !== action.payload
         ),
       };
+    // case 'READ_INCOME':
+    //   return {
+    //     ...state,
+    //     incomeTransactions: state.incomeTransactions.filter(
+    //       (incomeTransaction) => incomeTransaction.id === action.payload
+    //     ),
+    //   };
+
+    case 'UPDATE_INCOME':
+      console.log(state);
+
+      return {
+        ...state,
+        incomeTransactions: state.incomeTransactions.filter(
+          (incomeTransaction) =>
+            incomeTransaction.id === action.payload.editIncomeTransaction.id
+        ),
+        // incomeTransactions: [action.payload, ...state.expenseTransactions],
+        // incomeTransactions: state.incomeTransactions.filter(
+        //   (incomeTransaction) => incomeTransaction.id === action.payload.id
+        // ),
+        // incomeTransactions: state.incomeTransactions.map((incomeTransaction) =>
+        //   incomeTransaction.id === action.payload.editIncomeTransaction.id
+        //     ? action.payload
+        //     : incomeTransaction
+        // ),
+      };
+
     default:
       return state;
   }
