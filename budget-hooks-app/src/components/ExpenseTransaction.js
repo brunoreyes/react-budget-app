@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 // using props to pass expenseTransaction and place it in {} to destructure it
 const ExpenseTransaction = ({ expenseTransaction }) => {
-  const { deleteTransaction } = useContext(GlobalContext);
+  const { deleteTransaction, findExpense, editExpenseTransaction } = useContext(
+    GlobalContext
+  );
 
   return (
     <div>
@@ -23,15 +25,17 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
         >
           <i className="fas fa-trash"></i>{' '}
         </button>{' '}
-        <div>
+        <button
+          className={
+            editExpenseTransaction === expenseTransaction
+              ? 'btn-editing'
+              : 'btn-edit'
+          }
+          onClick={() => findExpense(expenseTransaction)}
+        >
           {' '}
-          <button
-            className="btn-edit"
-            // onClick={() => findItem(task.id)}
-          >
-            <i className="fas fa-pen"></i>
-          </button>
-        </div>
+          <i className="fas fa-pen"></i>
+        </button>
       </li>
     </div>
   );

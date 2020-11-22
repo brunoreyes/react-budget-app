@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useEffect, useState } from 'react';
 import AppReducer from './AppReducer.js';
 
-// using the localstorge of the website
+// using the localStorage of the website
 const initialState = {
   incomeTransactions:
     JSON.parse(localStorage.getItem('incomeTransactions')) || [],
@@ -30,24 +30,33 @@ export const GlobalContextProvider = ({ children }) => {
   // const [variable, function] = useReducer(fileThatContainsInfo, valueOfTheState);
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  // // for setting transactions
-  // const [incomeTransactions, updatingIncomeTransactions] = useState(
-  //   initialState
-  // );
-
-  // for editing an income Transaction
-  const [editIncomeTransaction, setIncomeTransaction] = useState(null);
-
+  // utilizing useEffect to set the local storage to the "inititialState"
+  // which is the value given to "state" via the function: dispatch, using the
+  // useReducer hook. Basically setting the storage to whatever action is called
   useEffect(() => {
     localStorage.setItem(
       'incomeTransactions',
       JSON.stringify(state.incomeTransactions)
     );
+    localStorage.setItem(
+      'expenseTransactions',
+      JSON.stringify(state.expenseTransactions)
+    );
   });
+
+  // for editing Transactions or Deleting transactions
+  // functionality has been set so a targeted transaction values will be sent
+  // to the setIncome/ExpenseTransaction function which uses useState(values) and sets
+  // that value to = the editIncome/ExpenseTransaction variable
+  // after the edit submission or delete onClick have been pressed,
+  // setIncome/ExpenseTransaction() will be passed the parameter null,
+  // to clear the input fields once again.
+
+  const [editIncomeTransaction, setIncomeTransaction] = useState(null);
+  const [editExpenseTransaction, setExpenseTransaction] = useState(null);
 
   // addIncome will add transaction info to the state, by taking in the parameter of incomeTransaction
   // and passing it as the value of the payload property: incomeTransaction
-
   // addIncome has to be passed down to the provider
   const addIncome = (incomeTransaction) => {
     //   Within the dispatch we must pass an action ( a pure Js object), and define it's type, which by convention
@@ -74,17 +83,18 @@ export const GlobalContextProvider = ({ children }) => {
       type: 'DELETE_TRANSACTION',
       payload: id,
     });
+    setIncomeTransaction(null);
   };
 
-  // Find task
+  // Finding transactions for editing
   const findIncome = (incomeTransaction) => {
-    // dispatch({
-    //   type: 'READ_INCOME',
-    //   payload: incomeTransaction,
-    // });
     const item = incomeTransaction;
-    // console.log(incomeTransaction);
     setIncomeTransaction(item);
+  };
+
+  const findExpense = (expenseTransaction) => {
+    const item = expenseTransaction;
+    setExpenseTransaction(item);
   };
 
   // editing a transaction by taking in a unique id and targeting it
@@ -92,7 +102,6 @@ export const GlobalContextProvider = ({ children }) => {
     incomeName,
     incomeAmountNumber,
     editIncomeTransaction
-    // incomeTransactions
   ) => {
     dispatch({
       type: 'UPDATE_INCOME',
@@ -103,13 +112,20 @@ export const GlobalContextProvider = ({ children }) => {
     setIncomeTransaction(null);
   };
 
-  // editing a transaction by taking in a unique id and targeting it
-  // const editExpense = (id) => {
-  //   dispatch({
-  //     type: 'UPDATE_EXPENSE',
-  //     payload: id,
-  //   });
-  // };
+  const editExpense = (
+    expenseName,
+    expenseAmountNumber,
+    editExpenseTransaction
+  ) => {
+    dispatch({
+      type: 'UPDATE_EXPENSE',
+      payload: editExpenseTransaction.id,
+      expenseName,
+      expenseAmountNumber,
+    });
+    setExpenseTransaction(null);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -117,15 +133,17 @@ export const GlobalContextProvider = ({ children }) => {
         // make sure to place a common between data passed
         incomeTransactions: state.incomeTransactions,
         expenseTransactions: state.expenseTransactions,
+        editIncomeTransaction,
+        editExpenseTransaction,
         addIncome,
         addExpense,
         deleteTransaction,
-        editIncome,
-        // editExpense,
+        // 2 parts for editing transaction:
+        // Pt. 1: finding the unique id, Pt. 2: replacing it & mapping out a new array
         findIncome,
-        editIncomeTransaction,
-
-        // findExpense,
+        editIncome,
+        findExpense,
+        editExpense,
       }}
     >
       {children}

@@ -23,21 +23,8 @@ export default (state, action) => {
           (expenseTransaction) => expenseTransaction.id !== action.payload
         ),
       };
-    // case 'READ_INCOME':
-    //   return {
-    //     ...state,
-    //     incomeTransactions: state.incomeTransactions.filter(
-    //       (incomeTransaction) => incomeTransaction.id === action.payload
-    //     ),
-    //   };
 
     case 'UPDATE_INCOME':
-      console.log(action);
-
-      // state.incomeTransactions[action.payload].incomeName = action.incomeName;
-      // state.incomeTransactions[action.payload].incomeAmount =
-      //   action.incomeAmount;
-
       return {
         ...state,
         incomeTransactions: state.incomeTransactions.map(
@@ -51,6 +38,26 @@ export default (state, action) => {
               return updatedItem;
             }
             return incomeTransaction;
+          }
+        ),
+      };
+
+    case 'UPDATE_EXPENSE':
+      // console.log(action);
+
+      return {
+        ...state,
+        expenseTransactions: state.expenseTransactions.map(
+          (expenseTransaction) => {
+            if (expenseTransaction.id === action.payload) {
+              const updatedItem = {
+                ...expenseTransaction,
+                expenseAmount: action.expenseAmountNumber,
+                expenseName: action.expenseName,
+              };
+              return updatedItem;
+            }
+            return expenseTransaction;
           }
         ),
       };

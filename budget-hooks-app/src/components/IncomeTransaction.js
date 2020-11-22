@@ -6,10 +6,6 @@ const IncomeTransaction = ({ incomeTransaction }) => {
   const { deleteTransaction, findIncome, editIncomeTransaction } = useContext(
     GlobalContext
   );
-  // const { deleteTransaction, editTransaction } = useContext(GlobalContext);
-
-  // const [editTransaction, setEditTransaction] = useState(null);
-  // const newIncome = parseFloat(incomeTransaction.incomeAmount);
 
   return (
     <div>

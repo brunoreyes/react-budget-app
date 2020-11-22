@@ -3,8 +3,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 // importing in order to addIncome function from GlobalContext
 import { GlobalContext } from '../context/GlobalState';
-// import IncomeTransaction from './IncomeTransaction';
-// import IncomeTransaction from './IncomeTransaction';
 
 const TransactionForm = () => {
   //gathering functions from GlobalContext
@@ -12,42 +10,38 @@ const TransactionForm = () => {
     addIncome,
     addExpense,
     editIncome,
+    editExpense,
     editIncomeTransaction,
-    incomeTransactions,
-    // editExpense,
+    editExpenseTransaction,
   } = useContext(GlobalContext);
-  // const [name, setIncomeName] = useState('');
 
   // creating a new state by using array destructuring
-
   //  variable   function     hook        value
   const [income, setIncome] = useState({
     incomeName: '',
     incomeAmount: '',
   });
 
+  const [expense, setExpense] = useState({
+    expenseName: '',
+    expenseAmount: '',
+  });
+
   // destructuring properties from the income object
   const { incomeName, incomeAmount } = income;
+  const { expenseName, expenseAmount } = expense;
 
   const onSubmitIncome = (e) => {
     // e.preventDefault method ensures the submit btn doesn't reload the pg, like it normally would.
     e.preventDefault();
 
     if (editIncomeTransaction) {
-      console.log(editIncomeTransaction);
+      // console.log(editIncomeTransaction);
+      // make sure to multiply by 1 again to avoid string parsing errors
       const incomeAmountNumber = incomeAmount * 1;
-      editIncome(
-        incomeName,
-        // incomeAmount,
-        incomeAmountNumber,
-        editIncomeTransaction,
-        incomeTransactions
-      );
+      editIncome(incomeName, incomeAmountNumber, editIncomeTransaction);
       console.log(incomeName, incomeAmount);
       setIncome({ incomeName: '', incomeAmount: '' });
-
-      // editIncome(incomeName, incomeAmount, editIncome.id);
-      // editIncome(incomeName, incomeAmount, editIncome.id);}
     } else if (incomeName || incomeAmount !== '') {
       const newIncomeTransaction = {
         // uuid is an npm pkg that autogenerates unique ids for each newly created object, installed via: npm i uuid
@@ -64,6 +58,24 @@ const TransactionForm = () => {
     }
   };
 
+  const onSubmitExpense = (e) => {
+    e.preventDefault();
+
+    if (editExpenseTransaction) {
+      const expenseAmountNumber = expenseAmount * 1;
+      editExpense(expenseName, expenseAmountNumber, editExpenseTransaction);
+      setExpense({ expenseName: '', expenseAmount: '' });
+    } else if (expenseName || expenseAmount !== '') {
+      const newExpenseTransaction = {
+        id: uuidv4(),
+        expenseName,
+        expenseAmount: expenseAmount * 1,
+      };
+      addExpense(newExpenseTransaction);
+      setExpense({ expenseName: '', expenseAmount: '' });
+    }
+  };
+
   // function that uses set income method
   const onChangeIncome = (e) => {
     // accessing the exact property name with [] and assigning it a value
@@ -72,6 +84,11 @@ const TransactionForm = () => {
     // console.log(income);
   };
 
+  const onChangeExpense = (e) => {
+    setExpense({ ...expense, [e.target.name]: e.target.value });
+  };
+
+  // changing the input fields value to whichever transaction is choosen to edit.
   useEffect(() => {
     if (editIncomeTransaction) {
       setIncome({
@@ -84,43 +101,16 @@ const TransactionForm = () => {
     }
   }, [editIncomeTransaction]);
 
-  //  variable   function     hook        value
-  const [expense, setExpense] = useState({
-    expenseName: '',
-    expenseAmount: '',
-  });
-
-  // destructuring properties from the expense object
-  const { expenseName, expenseAmount } = expense;
-
-  // function that uses set expense method
-  const onChangeExpense = (e) => {
-    // accessing the exact property name with [] and assigning it a value
-    // to keep both properties (expenseText & expenseAmount) spread out the expense object via "...expense"
-    setExpense({ ...expense, [e.target.name]: e.target.value });
-    // console.log(expense);
-  };
-
-  const onSubmitExpense = (e) => {
-    // e.preventDefault method ensures the submit btn doesn't reload the pg, like it normally would.
-    e.preventDefault();
-
-    if (expenseName || expenseAmount !== '') {
-      const newExpenseTransaction = {
-        // uuid is an npm pkg that autogenerates unique ids for each newly created object, installed via: npm i uuid
-        id: uuidv4(),
-        // thanks to es6, if the property and value are the same, we can write the value ones
-        //  so expenseText instead of expenseText: expense.expenseText,
-        expenseName,
-        //   multiplying a string by 1 will convert a string number into just a number (change string to an int)
-        expenseAmount: expenseAmount * 1,
-      };
-      // console.log(newexpenseTransaction);
-      addExpense(newExpenseTransaction);
-
-      setExpense({ expenseName: '', expenseAmount: '' });
+  useEffect(() => {
+    if (editExpenseTransaction) {
+      setExpense({
+        expenseName: editExpenseTransaction.expenseName,
+        expenseAmount: editExpenseTransaction.expenseAmount,
+      });
+    } else {
+      setExpense('');
     }
-  };
+  }, [editExpenseTransaction]);
 
   return (
     <div className="form-wrapper">
@@ -128,7 +118,7 @@ const TransactionForm = () => {
         <div className="input-group income">
           <input
             type="text"
-            value={incomeName}
+            value={incomeName || ''}
             // name of the attribute should match the name of the property of the income object
             name="incomeName"
             placeholder="Income Name"
@@ -137,7 +127,7 @@ const TransactionForm = () => {
           />
           <input
             type="number"
-            value={incomeAmount}
+            value={incomeAmount || ''}
             // name of the attribute should match the name of the property of the income object
             name="incomeAmount"
             placeholder="00.00"
@@ -165,16 +155,15 @@ const TransactionForm = () => {
         <div className="input-group expense">
           <input
             type="text"
-            value={expenseName}
+            value={expenseName || ''}
             name="expenseName"
             placeholder="Expense Name"
             autoComplete="off"
             onChange={onChangeExpense}
           />
-
           <input
             type="number"
-            value={expenseAmount}
+            value={expenseAmount || ''}
             placeholder="00.00"
             name="expenseAmount"
             onChange={onChangeExpense}
@@ -188,7 +177,11 @@ const TransactionForm = () => {
             onChange={onChangeExpense}
             autoComplete="off"
           /> */}
-          <input type="submit" value="+ Expense" />
+          {editExpenseTransaction ? <i className="fas fa-pen"></i> : <></>}
+          <input
+            type="submit"
+            value={editExpenseTransaction ? '     Expense' : '+ Expense'}
+          ></input>{' '}
         </div>
       </form>
     </div>
