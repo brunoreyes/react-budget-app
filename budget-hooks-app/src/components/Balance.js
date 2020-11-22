@@ -7,6 +7,8 @@ const Balance = () => {
   // grabbing all of the previous income and expense amounts and mapping them out
   const incomeAmounts = incomeTransactions.map(
     (incomeTransaction) => incomeTransaction.incomeAmount
+    // (incomeTransaction) => parseFloat(incomeTransaction.incomeAmount)
+    // to convert a string into a number, use parseFloat()
   );
 
   const expenseAmounts = expenseTransactions.map(

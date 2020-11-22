@@ -197,13 +197,30 @@ html {
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
+.input-group i {
+  font-size: 1.3rem;
+  margin-left: 9px;
+  margin-right: -8px;
+  margin-top: 16px;
+  margin-bottom: -27px;
+  z-index: 9999;
+  /* color: #fff; */
+  position: relative;
+  color: #fff;
+
+  /* background-color: transparent; */
+  margin-right: 20px;
+}
+
 .input-group input[type='submit']:active {
   transform: translateY(0.3rem);
+  /* z-index: 10; */
 }
 
 .income input[type='submit'] {
   /* background-color: #77c987; */
   background-color: #5a9b67;
+  position: relative;
 }
 
 #income-input-submit-btn {
@@ -331,6 +348,24 @@ input[type='number']::-webkit-inner-spin-button {
   /* color: #bbb; */
   /* color: #fff; */
   color: #71a9f7;
+
+  /* background-color: transparent; */
+  margin-right: 20px;
+}
+
+.btn-editing {
+  transform: translateX(8.5rem);
+  padding: 0 -20rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.btn-editing i {
+  font-size: 16px;
+  /* color: #bbb; */
+  /* color: #fff; */
+  color: #fff;
 
   /* background-color: transparent; */
   margin-right: 20px;

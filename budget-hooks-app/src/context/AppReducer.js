@@ -32,23 +32,27 @@ export default (state, action) => {
     //   };
 
     case 'UPDATE_INCOME':
-      console.log(state);
+      console.log(action);
+
+      // state.incomeTransactions[action.payload].incomeName = action.incomeName;
+      // state.incomeTransactions[action.payload].incomeAmount =
+      //   action.incomeAmount;
 
       return {
         ...state,
-        incomeTransactions: state.incomeTransactions.filter(
-          (incomeTransaction) =>
-            incomeTransaction.id === action.payload.editIncomeTransaction.id
+        incomeTransactions: state.incomeTransactions.map(
+          (incomeTransaction) => {
+            if (incomeTransaction.id === action.payload) {
+              const updatedItem = {
+                ...incomeTransaction,
+                incomeAmount: action.incomeAmountNumber,
+                incomeName: action.incomeName,
+              };
+              return updatedItem;
+            }
+            return incomeTransaction;
+          }
         ),
-        // incomeTransactions: [action.payload, ...state.expenseTransactions],
-        // incomeTransactions: state.incomeTransactions.filter(
-        //   (incomeTransaction) => incomeTransaction.id === action.payload.id
-        // ),
-        // incomeTransactions: state.incomeTransactions.map((incomeTransaction) =>
-        //   incomeTransaction.id === action.payload.editIncomeTransaction.id
-        //     ? action.payload
-        //     : incomeTransaction
-        // ),
       };
 
     default:

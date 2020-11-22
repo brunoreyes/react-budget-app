@@ -3,10 +3,13 @@ import { GlobalContext } from '../context/GlobalState';
 
 // using props to pass incomeTransaction and place it in {} to destructure it
 const IncomeTransaction = ({ incomeTransaction }) => {
-  const { deleteTransaction, findIncome } = useContext(GlobalContext);
+  const { deleteTransaction, findIncome, editIncomeTransaction } = useContext(
+    GlobalContext
+  );
   // const { deleteTransaction, editTransaction } = useContext(GlobalContext);
 
   // const [editTransaction, setEditTransaction] = useState(null);
+  // const newIncome = parseFloat(incomeTransaction.incomeAmount);
 
   return (
     <div>
@@ -26,9 +29,14 @@ const IncomeTransaction = ({ incomeTransaction }) => {
           <i className="fas fa-trash"></i>
         </button>{' '}
         <button
-          className="btn-edit"
+          className={
+            editIncomeTransaction === incomeTransaction
+              ? 'btn-editing'
+              : 'btn-edit'
+          }
           onClick={() => findIncome(incomeTransaction)}
         >
+          {' '}
           <i className="fas fa-pen"></i>
         </button>
         {/* {JSON.stringify(incomeTransaction)} */}

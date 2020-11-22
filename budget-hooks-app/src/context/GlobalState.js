@@ -2,26 +2,26 @@ import React, { createContext, useReducer, useEffect, useState } from 'react';
 import AppReducer from './AppReducer.js';
 
 // using the localstorge of the website
-// const initialState = {
-//   incomeTransactions:
-//     JSON.parse(localStorage.getItem('incomeTransactions')) || [],
-//   expenseTransactions:
-//     JSON.parse(localStorage.getItem('expenseTransactions')) || [],
-// };
+const initialState = {
+  incomeTransactions:
+    JSON.parse(localStorage.getItem('incomeTransactions')) || [],
+  expenseTransactions:
+    JSON.parse(localStorage.getItem('expenseTransactions')) || [],
+};
 
 // test data
-const initialState = {
-  incomeTransactions: [
-    { id: 1, incomeName: 'Car sold', incomeAmount: 15000 },
-    { id: 2, incomeName: 'Salary', incomeAmount: 5000 },
-    { id: 3, incomeName: 'Bonus', incomeAmount: 13000 },
-  ],
-  expenseTransactions: [
-    { id: 1, expenseName: 'Rent', expenseAmount: 1000 },
-    { id: 2, expenseName: 'Credit Card', expenseAmount: 2000 },
-    { id: 3, expenseName: 'Clothes', expenseAmount: 500 },
-  ],
-};
+// const initialState = {
+//   incomeTransactions: [
+//     { id: 1, incomeName: 'Car sold', incomeAmount: 15000 },
+//     { id: 2, incomeName: 'Salary', incomeAmount: 5000 },
+//     { id: 3, incomeName: 'Bonus', incomeAmount: 13000 },
+//   ],
+//   expenseTransactions: [
+//     { id: 1, expenseName: 'Rent', expenseAmount: 1000 },
+//     { id: 2, expenseName: 'Credit Card', expenseAmount: 2000 },
+//     { id: 3, expenseName: 'Clothes', expenseAmount: 500 },
+//   ],
+// };
 export const GlobalContext = createContext(initialState);
 
 // children: all components that live within the application
@@ -42,10 +42,6 @@ export const GlobalContextProvider = ({ children }) => {
     localStorage.setItem(
       'incomeTransactions',
       JSON.stringify(state.incomeTransactions)
-    );
-    localStorage.setItem(
-      'expenseTransactions',
-      JSON.stringify(state.expenseTransactions)
     );
   });
 
@@ -87,38 +83,24 @@ export const GlobalContextProvider = ({ children }) => {
     //   payload: incomeTransaction,
     // });
     const item = incomeTransaction;
-    console.log(incomeTransaction);
-    // setItem('incomeTransactions', JSON.stringify(state.incomeTransactions));
+    // console.log(incomeTransaction);
     setIncomeTransaction(item);
   };
 
   // editing a transaction by taking in a unique id and targeting it
-  const editIncome = (incomeName, incomeAmount, editIncomeTransaction) => {
+  const editIncome = (
+    incomeName,
+    incomeAmountNumber,
+    editIncomeTransaction
+    // incomeTransactions
+  ) => {
     dispatch({
       type: 'UPDATE_INCOME',
-      payload: editIncomeTransaction,
+      payload: editIncomeTransaction.id,
       incomeName,
-      incomeAmount,
+      incomeAmountNumber,
     });
-    // const newIncomeTransactions = initialState.incomeTransactions.map(
-    //   (incomeTransaction) =>
-    //     incomeTransaction.id === editIncomeTransaction.id
-    //       ? { incomeName, incomeAmount }
-    //       : incomeTransaction
-    // );
-
-    // updatingIncomeTransactions(newIncomeTransactions);
-
-    // const newIncomeTransaction = (incomeTransaction) =>
-    //   incomeTransaction.id === editIncomeTransaction.id
-    //     ? { incomeName, incomeAmount }
-    //     : incomeTransaction;
-    // console.log(newIncomeTransaction);
-    // incomeTransaction.id === editIncomeTransaction.id
-    //   ? { incomeName, incomeAmount, id }
-    //   : incomeTransaction;
-
-    // newIncomeTransactions;
+    setIncomeTransaction(null);
   };
 
   // editing a transaction by taking in a unique id and targeting it
