@@ -5,6 +5,10 @@ import Balance from './components/Balance';
 import TransactionForm from './components/TransactionForm';
 import IncomeList from './components/IncomeList';
 import ExpenseList from './components/ExpenseList';
+import BarChart from './components/BarChart';
+import IncomePieChart from './components/IncomePieChart';
+import ExpensePieChart from './components/ExpensePieChart';
+
 // import GlobalContextProvider, the useReducer hook, and wrap everything within the application.
 import { GlobalContextProvider } from './context/GlobalState';
 
@@ -19,9 +23,12 @@ const App = () => {
         <div className="app-wrapper">
           <Header />
           <Balance />
+          <BarChart className="bar-chart" />
           <TransactionForm />
           <IncomeList />
           <ExpenseList />
+          <IncomePieChart />
+          <ExpensePieChart />
         </div>
       </div>
     </GlobalContextProvider>

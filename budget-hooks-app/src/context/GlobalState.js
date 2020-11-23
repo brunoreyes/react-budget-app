@@ -43,6 +43,38 @@ export const GlobalContextProvider = ({ children }) => {
       JSON.stringify(state.expenseTransactions)
     );
   });
+  // grabbing all of the previous income and expense amounts and mapping them out
+  const incomeAmountsMapped = state.incomeTransactions.map(
+    (incomeTransaction) => incomeTransaction.incomeAmount
+    // (incomeTransaction) => parseFloat(incomeTransaction.incomeAmount)
+    // to convert a string into a number, use parseFloat()
+  );
+
+  const expenseAmountsMapped = state.expenseTransactions.map(
+    (expenseTransaction) => expenseTransaction.expenseAmount
+  );
+
+  // passing and taking in to arguments, the acc (accumulator) and current income amount
+  // then we are adding the acc to the current income amount, producing the new current income amount
+  // 0 is adding 0 additioanl value to the income, .toFixed add fixed decimals
+  const totalIncome = incomeAmountsMapped.reduce(
+    (acc, item) => (acc += item),
+    0
+  );
+  // .toFixed(2);
+  const totalExpense = expenseAmountsMapped.reduce(
+    (acc, item) => (acc += item),
+    0
+  );
+  const formattedTotalBudget = (
+    totalIncome - totalExpense
+  ).toLocaleString(undefined, { maximumFractionDigits: 2 });
+  const formattedTotalIncome = totalIncome.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  });
+  const formattedTotalExpense = totalExpense.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  });
 
   // for editing Transactions or Deleting transactions
   // functionality has been set so a targeted transaction values will be sent
@@ -135,6 +167,11 @@ export const GlobalContextProvider = ({ children }) => {
         expenseTransactions: state.expenseTransactions,
         editIncomeTransaction,
         editExpenseTransaction,
+        formattedTotalBudget,
+        formattedTotalExpense,
+        formattedTotalIncome,
+        totalIncome,
+        totalExpense,
         addIncome,
         addExpense,
         deleteTransaction,

@@ -14,7 +14,7 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
           {expenseTransaction.expenseName}
         </span>
         <span className="transaction-amount">
-          $
+          -$
           {expenseTransaction.expenseAmount.toLocaleString(undefined, {
             maximumFractionDigits: 2,
           })}

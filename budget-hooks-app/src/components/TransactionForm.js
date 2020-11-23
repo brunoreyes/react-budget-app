@@ -121,8 +121,9 @@ const TransactionForm = () => {
             value={incomeName || ''}
             // name of the attribute should match the name of the property of the income object
             name="incomeName"
-            placeholder="Income Name"
+            placeholder="Income Name *"
             autoComplete="off"
+            required
             onChange={onChangeIncome}
           />
           <input
@@ -130,8 +131,9 @@ const TransactionForm = () => {
             value={incomeAmount || ''}
             // name of the attribute should match the name of the property of the income object
             name="incomeAmount"
-            placeholder="00.00"
+            placeholder="00.00 *"
             autoComplete="off"
+            required
             onChange={onChangeIncome}
           />{' '}
           {/* TODO: input date for transactions here */}
@@ -147,8 +149,17 @@ const TransactionForm = () => {
           {editIncomeTransaction ? <i className="fas fa-pen"></i> : <></>}
           <input
             type="submit"
+            // preventative measure to avoid crashing the program due to a NaN input
+            disabled={
+              incomeName && incomeAmount && incomeAmount >= 0.01
+                ? false
+                : 'disabled'
+            }
             value={editIncomeTransaction ? '     Income' : '+ Income'}
           ></input>{' '}
+          <p aria-hidden="true" id="required-description">
+            {/* <span className="required">*</span>Required field */}
+          </p>
         </div>
       </form>
       <form onSubmit={onSubmitExpense}>
@@ -157,15 +168,17 @@ const TransactionForm = () => {
             type="text"
             value={expenseName || ''}
             name="expenseName"
-            placeholder="Expense Name"
+            placeholder="Expense Name *"
             autoComplete="off"
+            required
             onChange={onChangeExpense}
           />
           <input
             type="number"
             value={expenseAmount || ''}
-            placeholder="00.00"
-            name="expenseAmount"
+            placeholder="00.00 *"
+            name="expenseAmount "
+            required
             onChange={onChangeExpense}
             autoComplete="off"
           />
@@ -180,6 +193,11 @@ const TransactionForm = () => {
           {editExpenseTransaction ? <i className="fas fa-pen"></i> : <></>}
           <input
             type="submit"
+            disabled={
+              expenseName && expenseAmount && expenseAmount >= 0.01
+                ? false
+                : 'disabled'
+            }
             value={editExpenseTransaction ? '     Expense' : '+ Expense'}
           ></input>{' '}
         </div>

@@ -12,7 +12,7 @@ const IncomeTransaction = ({ incomeTransaction }) => {
       <li className="transaction">
         <span className="transaction-text">{incomeTransaction.incomeName}</span>
         <span className="transaction-amount">
-          $
+          +$
           {incomeTransaction.incomeAmount.toLocaleString(undefined, {
             maximumFractionDigits: 2,
           })}
