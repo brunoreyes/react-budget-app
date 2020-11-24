@@ -62,22 +62,34 @@ html {
   text-align: center;
   height: 200px;
 }
-.bar-chart {
-  grid-column: 1 / 2;
-  grid-row: -2 / 5;
-  align-items: center;
-  width: 400px;
-  flex-direction: column;
-}
 
 .balance h2 {
   /* font-family: 'Baloo Da 2', serif; */
-  margin-top: -7rem;
   font-family: 'Roboto', serif;
   font-size: 4.5rem;
   font-weight: 300;
-  color: #fff;
+  margin-top: -19rem;
+  color: #71a9f7;
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+.income-expense {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0rem;
+  font-family: 'Roboto', serif;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+.bar-chart {
+  grid-column: 1 / 2;
+  grid-row: -2 / 4;
+  width: 350px;
+  margin-left: 4.5rem;
+  margin-top: 0rem;
+}
+.expense-pie-chart-container {
+}
+.income-pie-chart-container {
 }
 
 .balance h3 {
@@ -88,23 +100,13 @@ html {
   text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
-.income-expense {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 0rem;
-  /* font-family: 'Muli', serif; */
-  font-family: 'Roboto', serif;
-  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
-  text-align: right;
-}
-
-.plus,
 .minus {
-  margin: 0 2rem;
+  margin: 0 6rem 0 6rem;
 }
 
 .plus {
-  color: #77c987;
+  color: #23cc4a;
+  margin: 0 0rem 0 7rem;
 }
 
 .minus {
@@ -114,13 +116,14 @@ html {
 .income-expense h3 {
   font-size: 3.5rem;
   font-weight: 400;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
 .income-expense p {
   font-size: 2.8rem;
   font-weight: 400;
+
   text-align: center;
 }
 
@@ -223,7 +226,8 @@ html {
 
 .income input[type='submit'] {
   /* background-color: #77c987; */
-  background-color: #5a9b67;
+  /* background-color: #5a9b67; */
+  background-color: #21ba45;
   position: relative;
 }
 
@@ -309,7 +313,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .transactions-income .transaction {
-  background-color: #5a9b67;
+  /* background-color: #5a9b67; */
+  background-color: #21ba45;
   /* color: #222; */
   color: #fff;
 }
