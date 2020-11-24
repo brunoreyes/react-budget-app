@@ -6,7 +6,7 @@ const ExpenseList = () => {
   const { expenseTransactions } = useContext(GlobalContext);
   return (
     <div className="transactions transactions-expense">
-      <h2>Expenses</h2>
+      {/* <h2>Expenses</h2> */}
       <ul className="transaction-list">
         {expenseTransactions.map((expenseTransaction) => (
           <ExpenseTransaction

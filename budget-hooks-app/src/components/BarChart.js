@@ -1,16 +1,9 @@
 import React, { useContext } from 'react';
-// import ReactFrappeChart from 'react-frappe-charts';
 import { GlobalContext } from '../context/GlobalState';
 import { ResponsiveBarCanvas } from '@nivo/bar';
 
 const BarChart = () => {
-  const {
-    totalExpense,
-    totalIncome,
-    formattedTotalBudget,
-    formattedTotalExpense,
-    formattedTotalIncome,
-  } = useContext(GlobalContext);
+  const { totalExpense, totalIncome } = useContext(GlobalContext);
 
   const data = [
     {

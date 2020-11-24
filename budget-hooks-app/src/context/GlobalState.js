@@ -66,6 +66,7 @@ export const GlobalContextProvider = ({ children }) => {
     (acc, item) => (acc += item),
     0
   );
+  const totalBudget = totalIncome - totalExpense;
   const formattedTotalBudget = (
     totalIncome - totalExpense
   ).toLocaleString(undefined, { maximumFractionDigits: 2 });
@@ -116,6 +117,7 @@ export const GlobalContextProvider = ({ children }) => {
       payload: id,
     });
     setIncomeTransaction(null);
+    setExpenseTransaction(null);
   };
 
   // Finding transactions for editing
@@ -172,6 +174,7 @@ export const GlobalContextProvider = ({ children }) => {
         formattedTotalIncome,
         totalIncome,
         totalExpense,
+        totalBudget,
         addIncome,
         addExpense,
         deleteTransaction,

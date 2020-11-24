@@ -5,6 +5,7 @@ import { GlobalContext } from '../context/GlobalState';
 
 const Balance = () => {
   const {
+    totalBudget,
     formattedTotalBudget,
     formattedTotalExpense,
     formattedTotalIncome,
@@ -12,15 +13,19 @@ const Balance = () => {
 
   return (
     <div className="balance">
-      <h2>{formattedTotalBudget} </h2>
+      <h2
+        style={totalBudget >= 0 ? { color: '#23cc4a' } : { color: '#ff716e' }}
+      >
+        ${formattedTotalBudget}{' '}
+      </h2>
       <div className="income-expense">
         <div className="plus">
           <h3>Income</h3>
-          <p>{formattedTotalIncome}</p>
+          <p>${formattedTotalIncome}</p>
         </div>
         <div className="minus">
           <h3> Expense</h3>
-          <p>{formattedTotalExpense}</p>
+          <p>${formattedTotalExpense}</p>
         </div>
       </div>
     </div>

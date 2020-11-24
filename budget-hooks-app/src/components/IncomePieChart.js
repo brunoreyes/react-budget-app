@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { ResponsivePieCanvas } from '@nivo/pie';
-// import IncomeTransaction from './IncomeTransaction';
 
 const IncomePieChart = () => {
   const { incomeTransactions, totalIncome } = useContext(GlobalContext);
@@ -46,10 +45,9 @@ const IncomePieChart = () => {
       {' '}
       <ResponsivePieCanvas
         data={data}
-        margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
+        margin={{ top: 40, right: 0, bottom: 40, left: 30 }}
         colors={[
           '#21ba45',
-
           '#01f31e',
           '#004b23',
           '#006400',
@@ -58,11 +56,11 @@ const IncomePieChart = () => {
           '#016400',
           '#2c9348',
           '#6feb83',
-          '#fff',
-          '#',
-          '#',
-          '#',
-          '#',
+          // '#fff',
+          // '#',
+          // '#',
+          // '#',
+          // '#',
         ]}
         // colors={{ scheme: 'yellow_green' }}
         // borderColor={{ from: 'color', modifiers: [['darker', '0.4']] }}
@@ -77,15 +75,15 @@ const IncomePieChart = () => {
         // }}
         pixelRatio={2}
         radialLabelsTextColor="#fff"
-        radialLabelsLinkOffset={-2}
-        radialLabelsLinkDiagonalLength={26}
-        radialLabelsLinkHorizontalLength={8}
-        radialLabelsLinkStrokeWidth={3}
+        radialLabelsLinkOffset={0}
+        radialLabelsLinkDiagonalLength={20}
+        radialLabelsLinkHorizontalLength={14}
+        radialLabelsLinkStrokeWidth={1.5}
         radialLabelsLinkColor={{ from: 'color', modifiers: [] }}
         enableSliceLabels={false}
-        sliceLabelsRadiusOffset={2}
         sliceLabelsSkipAngle={45}
         sliceLabelsTextColor="#ffffff"
+        isInteractive={false}
       />
     </div>
   );

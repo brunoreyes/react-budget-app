@@ -10,8 +10,8 @@ const IncomeList = () => {
   //   console.log(incomeTransactions);
   return (
     <div className="transactions transactions-income">
-      <h2>Income</h2>
-      <ul className="transaction-list">
+      {/* <h2>Income</h2> */}
+      <ul className="transaction-list-income">
         {incomeTransactions.map((incomeTransaction) => (
           // passing income transaction data
           <IncomeTransaction

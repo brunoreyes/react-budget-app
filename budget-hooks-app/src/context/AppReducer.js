@@ -30,12 +30,12 @@ export default (state, action) => {
         incomeTransactions: state.incomeTransactions.map(
           (incomeTransaction) => {
             if (incomeTransaction.id === action.payload) {
-              const updatedItem = {
+              const updatedIncomeTransaction = {
                 ...incomeTransaction,
                 incomeAmount: action.incomeAmountNumber,
                 incomeName: action.incomeName,
               };
-              return updatedItem;
+              return updatedIncomeTransaction;
             }
             return incomeTransaction;
           }
@@ -50,12 +50,12 @@ export default (state, action) => {
         expenseTransactions: state.expenseTransactions.map(
           (expenseTransaction) => {
             if (expenseTransaction.id === action.payload) {
-              const updatedItem = {
+              const updatedExpenseTransaction = {
                 ...expenseTransaction,
                 expenseAmount: action.expenseAmountNumber,
                 expenseName: action.expenseName,
               };
-              return updatedItem;
+              return updatedExpenseTransaction;
             }
             return expenseTransaction;
           }
