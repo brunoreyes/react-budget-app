@@ -12,10 +12,10 @@ const Balance = () => {
   return (
     <div className="balance">
       <h2>
-        {formattedTotalBudget <= 0.01 ? '-$' : '$'}
-        {formattedTotalBudget <= 0.01
-          ? formattedTotalBudget.substring(1)
-          : formattedTotalBudget}{' '}
+        {!formattedTotalBudget && formattedTotalBudget <= 0.01 ? '-$' : '$'}
+        {formattedTotalBudget > 0.0 || formattedTotalBudget
+          ? formattedTotalBudget
+          : formattedTotalBudget.substring(1)}{' '}
       </h2>
       <Zoom>
         <div className="income-expense">
@@ -25,7 +25,13 @@ const Balance = () => {
           </div>
           <div className="minus">
             <h3> Expense</h3>
-            <p>-${formattedTotalExpense}</p>
+            <p>
+              {' '}
+              {!formattedTotalBudget && formattedTotalBudget <= 0.01
+                ? '-$'
+                : '$'}
+              {formattedTotalExpense}
+            </p>
           </div>
         </div>{' '}
       </Zoom>
