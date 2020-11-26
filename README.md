@@ -12,7 +12,7 @@ I created an application that allows users to:
 - Visualize what comprises their income or expenses and how they compare.
 - Optionally add an 'expected by' date for incomes or a 'due by' date for expenses.
 
-### Duration: 1 Weeks
+### Duration: 1 Week
 
 ### Preview
 
