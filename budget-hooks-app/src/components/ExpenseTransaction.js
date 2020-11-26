@@ -10,6 +10,15 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
   return (
     <div>
       <li className="transaction">
+        {' '}
+        {expenseTransaction.expenseDate ? (
+          <i className="far fa-calendar">
+            <div className="transaction-date">
+              {' '}
+              {expenseTransaction.expenseDate.slice(-2)}
+            </div>
+          </i>
+        ) : null}
         <span className="transaction-text">
           {expenseTransaction.expenseName}
         </span>
@@ -18,7 +27,7 @@ const ExpenseTransaction = ({ expenseTransaction }) => {
           {expenseTransaction.expenseAmount.toLocaleString(undefined, {
             maximumFractionDigits: 2,
           })}
-        </span>
+        </span>{' '}
         <button
           className="delete-btn"
           onClick={() => deleteTransaction(expenseTransaction.id)}

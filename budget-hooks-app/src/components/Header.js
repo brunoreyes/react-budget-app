@@ -7,11 +7,7 @@ const Header = () => {
 
   return (
     <div className="header">
-      <h1
-        style={totalBudget >= 0 ? { color: '#23cc4a' } : { color: '#ff716e' }}
-      >
-        $tate
-      </h1>
+      <h1>$tate</h1>
     </div>
   );
 };

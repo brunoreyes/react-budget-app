@@ -135,13 +135,15 @@ export const GlobalContextProvider = ({ children }) => {
   const editIncome = (
     incomeName,
     incomeAmountNumber,
-    editIncomeTransaction
+    editIncomeTransaction,
+    incomeDate
   ) => {
     dispatch({
       type: 'UPDATE_INCOME',
       payload: editIncomeTransaction.id,
       incomeName,
       incomeAmountNumber,
+      incomeDate,
     });
     setIncomeTransaction(null);
   };
@@ -149,13 +151,15 @@ export const GlobalContextProvider = ({ children }) => {
   const editExpense = (
     expenseName,
     expenseAmountNumber,
-    editExpenseTransaction
+    editExpenseTransaction,
+    expenseDate
   ) => {
     dispatch({
       type: 'UPDATE_EXPENSE',
       payload: editExpenseTransaction.id,
       expenseName,
       expenseAmountNumber,
+      expenseDate,
     });
     setExpenseTransaction(null);
   };

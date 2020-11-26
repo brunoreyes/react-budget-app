@@ -34,6 +34,7 @@ export default (state, action) => {
                 ...incomeTransaction,
                 incomeAmount: action.incomeAmountNumber,
                 incomeName: action.incomeName,
+                incomeDate: action.incomeDate,
               };
               return updatedIncomeTransaction;
             }
@@ -52,8 +53,9 @@ export default (state, action) => {
             if (expenseTransaction.id === action.payload) {
               const updatedExpenseTransaction = {
                 ...expenseTransaction,
-                expenseAmount: action.expenseAmountNumber,
                 expenseName: action.expenseName,
+                expenseAmount: action.expenseAmountNumber,
+                expenseDate: action.expenseDate,
               };
               return updatedExpenseTransaction;
             }

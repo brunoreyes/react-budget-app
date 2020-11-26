@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
-
-// import ReactFrappeChart from 'react-frappe-charts';
+import Zoom from 'react-reveal/Zoom';
 
 const Balance = () => {
   const {
-    totalBudget,
     formattedTotalBudget,
     formattedTotalExpense,
     formattedTotalIncome,
@@ -13,21 +11,24 @@ const Balance = () => {
 
   return (
     <div className="balance">
-      <h2
-        style={totalBudget >= 0 ? { color: '#23cc4a' } : { color: '#ff716e' }}
-      >
-        ${formattedTotalBudget}{' '}
+      <h2>
+        {formattedTotalBudget <= 0.01 ? '-$' : '$'}
+        {formattedTotalBudget <= 0.01
+          ? formattedTotalBudget.substring(1)
+          : formattedTotalBudget}{' '}
       </h2>
-      <div className="income-expense">
-        <div className="plus">
-          <h3>Income</h3>
-          <p>${formattedTotalIncome}</p>
-        </div>
-        <div className="minus">
-          <h3> Expense</h3>
-          <p>${formattedTotalExpense}</p>
-        </div>
-      </div>
+      <Zoom>
+        <div className="income-expense">
+          <div className="plus">
+            <h3>Income</h3>
+            <p>${formattedTotalIncome}</p>
+          </div>
+          <div className="minus">
+            <h3> Expense</h3>
+            <p>-${formattedTotalExpense}</p>
+          </div>
+        </div>{' '}
+      </Zoom>
     </div>
   );
 };

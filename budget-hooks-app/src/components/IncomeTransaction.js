@@ -9,14 +9,24 @@ const IncomeTransaction = ({ incomeTransaction }) => {
 
   return (
     <div>
+      {' '}
       <li className="transaction">
+        {' '}
+        {incomeTransaction.incomeDate ? (
+          <i className="far fa-calendar">
+            <div className="transaction-date">
+              {' '}
+              {incomeTransaction.incomeDate.slice(-2)}
+            </div>
+          </i>
+        ) : null}
         <span className="transaction-text">{incomeTransaction.incomeName}</span>
         <span className="transaction-amount">
           +$
           {incomeTransaction.incomeAmount.toLocaleString(undefined, {
             maximumFractionDigits: 2,
           })}
-        </span>
+        </span>{' '}
         {/* added an onClick attribute to the delete btn */}
         <button
           className="delete-btn"
@@ -35,7 +45,6 @@ const IncomeTransaction = ({ incomeTransaction }) => {
           {' '}
           <i className="fas fa-pen"></i>
         </button>
-        {/* {JSON.stringify(incomeTransaction)} */}
       </li>
     </div>
   );
