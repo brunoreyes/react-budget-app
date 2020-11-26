@@ -289,13 +289,13 @@ input[type='date'] {
 .income input:disabled[type='submit'] {
   background-color: #21ba45;
   position: relative;
-  opacity: 50%;
+  opacity: 70%;
   transition: 0.3s;
 }
 
 .expense input:disabled[type='submit'] {
   background-color: #d64933;
-  opacity: 50%;
+  opacity: 70%;
   transition: all 0.3s;
 }
 .expense input[type='submit'] {
