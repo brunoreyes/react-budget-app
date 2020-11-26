@@ -48,6 +48,7 @@ const ExpensePieChart = () => {
           // radialLabelsLinkColor={{ from: 'color', modifiers: [] }}
           enableRadialLabels={false}
           enableSliceLabels={false}
+          // tooltip={false}
           // sliceLabel={}
           sliceLabelsSkipAngle={45}
           // sliceLabelsTextColor="#ffffff"
