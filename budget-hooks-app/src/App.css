@@ -283,24 +283,22 @@ input[type='date'] {
 .income input[type='submit'] {
   background-color: #21ba45;
   position: relative;
-  opacity: 100%;
   transition: 0.3s;
 }
 .income input:disabled[type='submit'] {
   background-color: #21ba45;
   position: relative;
-  opacity: 70%;
+  opacity: 0.5;
   transition: 0.3s;
 }
 
 .expense input:disabled[type='submit'] {
   background-color: #d64933;
-  opacity: 70%;
+  opacity: 0.5;
   transition: all 0.3s;
 }
 .expense input[type='submit'] {
   background-color: #d64933;
-  opacity: 100%;
   transition: 0.3s;
 }
 .btn-edit i:hover {
